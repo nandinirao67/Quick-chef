@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="QuickChef - Discover delicious recipes based on ingredients you have at home.">
+    <title>QuickChef - AI Recipe Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Floating food particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">🍳</span>
+                <span class="logo-text">Quick<span class="logo-accent">Chef</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#generator" class="nav-link">Generator</a></li>
+                <li><a href="#recipes" class="nav-link">Recipes</a></li>
+                <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <span class="user-greeting" id="userGreeting" style="font-size:0.85rem;font-weight:600;color:var(--text-secondary);"></span>
+                <button class="btn btn-primary nav-cta" id="getStartedBtn">Get Cooking</button>
+                <button class="btn btn-glass nav-cta" id="logoutBtn" style="display:none;padding:8px 18px;font-size:0.85rem;">Logout</button>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="#home" class="mobile-nav-link">Home</a></li>
+            <li><a href="#generator" class="mobile-nav-link">Generator</a></li>
+            <li><a href="#recipes" class="mobile-nav-link">Recipes</a></li>
+            <li><a href="#how-it-works" class="mobile-nav-link">How It Works</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge animate-on-scroll">
+                    <span class="badge-dot"></span>
+                    <span>AI-Powered Recipe Discovery</span>
+                </div>
+                <h1 class="hero-title animate-on-scroll">
+                    Cook Smarter,<br>
+                    <span class="gradient-text">Not Harder</span>
+                </h1>
+                <p class="hero-subtitle animate-on-scroll">
+                    Tell us what's in your fridge, and our intelligent recipe engine will craft 
+                    personalized, mouth-watering recipes in seconds. Zero waste, maximum flavor.
+                </p>
+                <div class="hero-actions animate-on-scroll">
+                    <button class="btn btn-primary btn-lg" id="heroStartBtn">
+                        <span>Start Cooking</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                    <button class="btn btn-glass btn-lg" id="heroExploreBtn">
+                        <span>Explore Recipes</span>
+                    </button>
+                </div>
+                <div class="hero-stats animate-on-scroll">
+                    <div class="stat">
+                        <span class="stat-number" data-count="500">0</span><span class="stat-plus">+</span>
+                        <span class="stat-label">Recipes</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number" data-count="120">0</span><span class="stat-plus">+</span>
+                        <span class="stat-label">Ingredients</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number" data-count="50">0</span><span class="stat-plus">K+</span>
+                        <span class="stat-label">Happy Cooks</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual animate-on-scroll">
+                <div class="hero-image-stack">
+                    <div class="hero-card hero-card-1">
+                        <img src="images/pasta.png" alt="Delicious Pasta">
+                        <div class="hero-card-overlay">
+                            <span>🍝 Creamy Pasta</span>
+                            <span class="hero-card-time">⏱ 25 min</span>
+                        </div>
+                    </div>
+                    <div class="hero-card hero-card-2">
+                        <img src="images/salad.png" alt="Fresh Salad">
+                        <div class="hero-card-overlay">
+                            <span>🥗 Power Salad</span>
+                            <span class="hero-card-time">⏱ 10 min</span>
+                        </div>
+                    </div>
+                    <div class="hero-card hero-card-3">
+                        <img src="images/chicken.png" alt="Chicken Stir Fry">
+                        <div class="hero-card-overlay">
+                            <span>🍗 Stir Fry</span>
+                            <span class="hero-card-time">⏱ 20 min</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="floating-badge badge-1">🔥 Trending</div>
+                <div class="floating-badge badge-2">⭐ 4.9</div>
+                <div class="floating-badge badge-3">💚 Healthy</div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- Ingredient Generator Section -->
+    <section class="generator-section" id="generator">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">✨ Recipe Generator</span>
+                <h2 class="section-title">What's in Your <span class="gradient-text">Kitchen</span>?</h2>
+                <p class="section-subtitle">Select ingredients you have, and we'll find the perfect recipe for you.</p>
+            </div>
+            <div class="generator-wrapper animate-on-scroll">
+                <div class="category-tabs">
+                    <button class="category-tab active" data-category="all"><span class="tab-icon">🍽️</span> All</button>
+                    <button class="category-tab" data-category="proteins"><span class="tab-icon">🥩</span> Proteins</button>
+                    <button class="category-tab" data-category="vegetables"><span class="tab-icon">🥬</span> Vegetables</button>
+                    <button class="category-tab" data-category="grains"><span class="tab-icon">🌾</span> Grains</button>
+                    <button class="category-tab" data-category="dairy"><span class="tab-icon">🧀</span> Dairy</button>
+                    <button class="category-tab" data-category="spices"><span class="tab-icon">🌶️</span> Spices</button>
+                    <button class="category-tab" data-category="fruits"><span class="tab-icon">🍎</span> Fruits</button>
+                </div>
+                <div class="ingredient-grid" id="ingredientGrid"></div>
+                <div class="selected-panel" id="selectedPanel">
+                    <div class="selected-header">
+                        <h3>🧺 Your Basket</h3>
+                        <button class="clear-all-btn" id="clearAllBtn">Clear All</button>
+                    </div>
+                    <div class="selected-tags" id="selectedTags">
+                        <p class="empty-msg">Select ingredients above to get started...</p>
+                    </div>
+                    <button class="btn btn-primary btn-lg find-recipes-btn" id="findRecipesBtn" disabled>
+                        <span class="btn-spark">✨</span>
+                        <span>Find My Recipes</span>
+                        <span class="btn-count" id="btnCount">(0)</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipe Results Section -->
+    <section class="recipes-section" id="recipes">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">🍴 Discover</span>
+                <h2 class="section-title">Delicious <span class="gradient-text">Recipes</span></h2>
+                <p class="section-subtitle">Hand-picked recipes matching your ingredients</p>
+            </div>
+            <div class="filter-bar animate-on-scroll">
+                <button class="filter-chip active" data-filter="all">All</button>
+                <button class="filter-chip" data-filter="quick">⚡ Quick (&lt; 20 min)</button>
+                <button class="filter-chip" data-filter="easy">👶 Easy</button>
+                <button class="filter-chip" data-filter="healthy">💚 Healthy</button>
+                <button class="filter-chip" data-filter="vegetarian">🌱 Vegetarian</button>
+            </div>
+            <div class="recipe-grid" id="recipeGrid"></div>
+            <div class="no-results" id="noResults" style="display:none;">
+                <div class="no-results-icon">🔍</div>
+                <h3>No recipes found</h3>
+                <p>Try selecting different ingredients or fewer filters</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-section" id="how-it-works">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">🚀 Simple Steps</span>
+                <h2 class="section-title">How <span class="gradient-text">QuickChef</span> Works</h2>
+                <p class="section-subtitle">From fridge to feast in 3 simple steps</p>
+            </div>
+            <div class="steps-grid animate-on-scroll">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon-wrap"><div class="step-icon">🥕</div></div>
+                    <h3>Select Ingredients</h3>
+                    <p>Pick the ingredients you have available in your kitchen from our extensive list.</p>
+                    <div class="step-glow"></div>
+                </div>
+                <div class="step-connector">
+                    <svg width="60" height="20" viewBox="0 0 60 20"><path d="M0 10h50M45 4l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon-wrap"><div class="step-icon">🤖</div></div>
+                    <h3>Get Smart Matches</h3>
+                    <p>Our engine analyzes your ingredients and finds the best possible recipe combinations.</p>
+                    <div class="step-glow"></div>
+                </div>
+                <div class="step-connector">
+                    <svg width="60" height="20" viewBox="0 0 60 20"><path d="M0 10h50M45 4l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon-wrap"><div class="step-icon">🍽️</div></div>
+                    <h3>Cook & Enjoy</h3>
+                    <p>Follow step-by-step instructions with timers and tips to create a masterpiece.</p>
+                    <div class="step-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="section-container">
+            <div class="cta-card animate-on-scroll">
+                <div class="cta-bg-pattern"></div>
+                <h2>Ready to Cook Something <span class="gradient-text">Amazing</span>?</h2>
+                <p>Join 50,000+ home chefs who save time and reduce food waste every day.</p>
+                <div class="cta-input-group">
+                    <input type="email" placeholder="Enter your email..." class="cta-input" id="emailInput">
+                    <button class="btn btn-primary btn-lg" id="subscribeBtn">Subscribe</button>
+                </div>
+                <p class="cta-note">🔒 No spam. Unsubscribe anytime.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span class="logo-icon">🍳</span>
+                        <span class="logo-text">Quick<span class="logo-accent">Chef</span></span>
+                    </a>
+                    <p>Making home cooking effortless, delicious, and waste-free with intelligent recipe suggestions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📸</a>
+                        <a href="#" class="social-link" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Product</h4>
+                    <ul><li><a href="#">Features</a></li><li><a href="#">Pricing</a></li><li><a href="#">API</a></li></ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Company</h4>
+                    <ul><li><a href="#">About</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li></ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Support</h4>
+                    <ul><li><a href="#">Help Center</a></li><li><a href="#">Contact</a></li><li><a href="#">Privacy</a></li></ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 QuickChef. Made with ❤️ for home cooks everywhere.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Recipe Detail Modal -->
+    <div class="modal-overlay" id="recipeModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-scroll">
+                <div class="modal-hero" id="modalHero">
+                    <img src="" alt="" id="modalImage">
+                    <div class="modal-hero-overlay">
+                        <div class="modal-badges" id="modalBadges"></div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <h2 class="modal-title" id="modalTitle"></h2>
+                    <p class="modal-desc" id="modalDesc"></p>
+                    <div class="modal-meta" id="modalMeta"></div>
+                    <div class="modal-section">
+                        <h3>🧾 Ingredients</h3>
+                        <ul class="modal-ingredients" id="modalIngredients"></ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3>👨‍🍳 Cooking Steps</h3>
+                        <ol class="modal-steps" id="modalSteps"></ol>
+                    </div>
+                    <div class="modal-section">
+                        <h3>💡 Chef's Tips</h3>
+                        <div class="modal-tips" id="modalTips"></div>
+                    </div>
+                    <div class="modal-nutrition">
+                        <h3>📊 Nutrition Facts</h3>
+                        <div class="nutrition-grid" id="nutritionGrid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Loading Spinner -->
+    <div class="loader-overlay" id="loaderOverlay">
+        <div class="loader">
+            <div class="loader-pan">🍳</div>
+            <div class="loader-text">Finding recipes...</div>
+            <div class="loader-bar"><div class="loader-fill"></div></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
